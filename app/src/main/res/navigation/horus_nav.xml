@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/horus_nav"
+    app:startDestination="@id/menuPrincipalFragment">
+
+    <fragment
+        android:id="@+id/menuPrincipalFragment"
+        android:name="com.example.proyectointegradorappsmoviles.fragments.MenuPrincipalFragment"
+        android:label="Menú Principal"
+        tools:layout="@layout/fragment_menu_principal">
+        <action
+            android:id="@+id/action_menuPrincipalFragment_to_menuOpcionesImpExpFragment"
+            app:destination="@id/menuOpcionesImpExpFragment" />
+        <action
+            android:id="@+id/action_menuPrincipalFragment_to_registrarVentaFragment"
+            app:destination="@id/registrarVentaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuOpcionesImpExpFragment"
+        android:name="com.example.proyectointegradorappsmoviles.fragments.MenuOpcionesImpExpFragment"
+        android:label="Menu ImpExp"
+        tools:layout="@layout/fragment_menu_opciones_imp_exp">
+        <action
+            android:id="@+id/action_menuOpcionesImpExpFragment_to_menuPrincipalFragment"
+            app:destination="@id/menuPrincipalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrarVentaFragment"
+        android:name="com.example.proyectointegradorappsmoviles.fragments.RegistrarVentaFragment"
+        android:label="Nueva Venta"
+        tools:layout="@layout/fragment_registrar_venta">
+        <action
+            android:id="@+id/action_registrarVentaFragment_to_menuPrincipalFragment"
+            app:destination="@id/menuPrincipalFragment" />
+    </fragment>
+</navigation>
