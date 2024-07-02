@@ -90,6 +90,12 @@ class RegistrarVentaFragment : Fragment() {
                 android.R.layout.simple_dropdown_item_1line,
                 lista
             )
+
+            if(lista.size < 1)
+            {
+                botonIngresarVenta.isEnabled = false
+            }
+
             spinnerClientes.setAdapter(adaptadorVentas)
             adaptadorVentas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         }
@@ -155,16 +161,24 @@ class RegistrarVentaFragment : Fragment() {
         {
             if(editTextCantidadVenta.text.toString() != "")
             {
-                val dateFormat: DateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm")
-                val date: java.util.Date = Calendar.getInstance().time;
-                val dateString : String = dateFormat.format(date)
+                if(editTextCantidadVenta.text.toString().toInt() == 0)
+                {
+                    Toast.makeText(context, "La cantidad mínima deber ser 1", Toast.LENGTH_LONG).show()
+                }
 
-                val nuevaVenta = Venta(0, spinnerClientes.selectedItem.toString(), editTextCantidadVenta.text.toString().toInt(), dateString, switchVentaPagada.isChecked, editTextVentaTotal.text.toString().toDouble())
-                ventaViewmodel.insertarVenta(nuevaVenta)
+                else
+                {
+                    val dateFormat: DateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm")
+                    val date: java.util.Date = Calendar.getInstance().time;
+                    val dateString : String = dateFormat.format(date)
 
-                findNavController().navigate(R.id.action_registrarVentaFragment_to_menuPrincipalFragment)
+                    val nuevaVenta = Venta(0, spinnerClientes.selectedItem.toString(), editTextCantidadVenta.text.toString().toInt(), dateString, switchVentaPagada.isChecked, editTextVentaTotal.text.toString().toDouble())
+                    ventaViewmodel.insertarVenta(nuevaVenta)
 
-                Toast.makeText(context, "Venta Nueva Generada", Toast.LENGTH_LONG).show()
+                    findNavController().navigate(R.id.action_registrarVentaFragment_to_menuPrincipalFragment)
+
+                    Toast.makeText(context, "Venta Nueva Generada", Toast.LENGTH_LONG).show()
+                }
             }
 
             else
